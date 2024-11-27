@@ -7,6 +7,10 @@ from django.contrib.auth.models import User
 # 3rd model for the topic
 class Topic(models.Model):
     name = models.CharField(max_length=250)
+    slug = models.SlugField(max_length=250,unique=True)
+    
+    class Meta:
+        ordering = ['name']
     
     def __str__(self):
         return self.name
