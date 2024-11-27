@@ -5,4 +5,10 @@
   
    <h1>Home template</h1>
 
+    <ul>
+        {% for data in room %}
+          <p><a href="#">{{data.name}}</a></p>
+        {% endfor %}
+    </ul>
+
 {% endblock content %}
