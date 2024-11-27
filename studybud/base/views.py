@@ -8,8 +8,8 @@ from  .models import Room
 def home(request):
     room = Room.objects.all()
     # build the context var
-    
-    return render(request,'home.html',{'room':room})
+    context = {'room':room}
+    return render(request,'base/home.html',context)
 
 def room(request):
-    return render(request,'room.html')
+    return render(request,'base/room.html')
