@@ -15,3 +15,10 @@ def room(request,pk):
     room = Room.objects.get(id=pk)
     context = {'room':room}
     return render(request,'base/room.html',context)
+
+
+
+# views for creating new form
+def createForm(request):
+    context = {}
+    return render(request,'base/room_form.html',context)
