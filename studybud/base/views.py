@@ -34,7 +34,7 @@ def createRoom(request):
 
 
 # views for updating new form
-def updateForm(request,pk):
+def updateRoom(request,pk):
     room = Room.objects.get(id=pk)
     form = RoomForm(instance=room)
     
