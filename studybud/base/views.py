@@ -19,6 +19,6 @@ def room(request,pk):
 
 
 # views for creating new form
-def createForm(request):
+def createRoom(request):
     context = {}
     return render(request,'base/room_form.html',context)
