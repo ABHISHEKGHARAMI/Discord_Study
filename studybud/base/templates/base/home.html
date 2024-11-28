@@ -6,7 +6,7 @@
    <h1>Home template</h1>
 
     <div>
-      
+      <a href="{% url "base:create-room" %}">Create a room</a>
       <div>
           <ul>
           {% for data in room %}
@@ -18,5 +18,7 @@
         </ul>
       </div>
     </div>
+
+    
 
 {% endblock content %}
