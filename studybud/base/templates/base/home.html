@@ -5,13 +5,18 @@
   
    <h1>Home template</h1>
 
-    <ul>
-        {% for data in room %}
-          <span>@{{data.host.username}}</span>
-          <p><a href="{% url "base:room" data.id %}">{{data.name}}</a></p>
-          <small>{{data.topic.name}}</small>
-          <hr>
-        {% endfor %}
-    </ul>
+    <div>
+      
+      <div>
+          <ul>
+          {% for data in room %}
+            <span>@{{data.host.username}}</span>
+            <p><a href="{% url "base:room" data.id %}">{{data.name}}</a></p>
+            <small>{{data.topic.name}}</small>
+            <hr>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
 
 {% endblock content %}
