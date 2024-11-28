@@ -9,8 +9,8 @@
         {% for data in room %}
           <span>@{{data.host.username}}</span>
           <p><a href="{% url "base:room" data.id %}">{{data.name}}</a></p>
-          <small>{{data.topic}}</small>
-          <br>
+          <small>{{data.topic.name}}</small>
+          <hr>
         {% endfor %}
     </ul>
 
