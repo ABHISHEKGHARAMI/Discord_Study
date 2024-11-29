@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from  .models import Room
+from  .models import Room , Topic
 from .form import RoomForm
 
 # Create your views here.
@@ -9,7 +9,8 @@ from .form import RoomForm
 def home(request):
     room = Room.objects.all()
     # build the context var
-    context = {'room':room}
+    topic = Topic.objects.all()
+    context = {'room':room,'topic':topic}
     return render(request,'base/home.html',context)
 
 def room(request,pk):
