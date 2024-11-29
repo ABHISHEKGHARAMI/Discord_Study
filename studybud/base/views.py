@@ -11,8 +11,9 @@ def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     room = Room.objects.filter(
         Q(topic__name__icontains=q)|
-        Q(name_icontains=q)|
-        Q(desc_icontains=q)
+        Q(name__icontains=q)|
+        Q(desc__icontains=q) |
+        Q(host__username__icontains=q)
         )
     # build the context var
     topic = Topic.objects.all()
