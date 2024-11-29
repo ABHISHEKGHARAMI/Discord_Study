@@ -12,17 +12,19 @@ from django.contrib.auth import authenticate, login, logout
 # login page
 def loginPage(request):
     if request.method == "POST":
+        # get the user cred from the user
         username = request.POST.get('username')
         password = request.POST.get('password')
-        
+        # get this from the database
         try:
             user = User.objects.get(username=username)
         except:
             messages.error(request,'User does not exist.')
-            
+        # authenticate the user from the django    
         user = authenticate(request,username=username,password=password)
         
         if user is not None:
+            # login using the post method
             login(request,user)
             return redirect('base:home')
         else:
@@ -31,8 +33,15 @@ def loginPage(request):
     return render(request,'base/login_registration.html',context)
 
 
+# logout view
+def logoutPage(request):
+    logout(request)
+    return redirect('base:home')
+
+
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
+    # filtering out the room using the topic name,name ,host username or desc
     room = Room.objects.filter(
         Q(topic__name__icontains=q)|
         Q(name__icontains=q)|
@@ -40,12 +49,13 @@ def home(request):
         Q(host__username__icontains=q)
         )
     # build the context var
-    room_count = room.count()
+    room_count = room.count() # room count
     topic = Topic.objects.all()
     context = {'room':room,'topic':topic,'room_count':room_count}
     return render(request,'base/home.html',context)
 
 def room(request,pk):
+    # querying from the room table using the id
     room = Room.objects.get(id=pk)
     context = {'room':room}
     return render(request,'base/room.html',context)
@@ -54,6 +64,8 @@ def room(request,pk):
 
 # views for creating new form
 def createRoom(request):
+    
+    # create the room from the form.py meta model using the post method
     form = RoomForm()
     if request.method == "POST":
         form = RoomForm(request.POST)
@@ -68,7 +80,9 @@ def createRoom(request):
 
 # views for updating new form
 def updateRoom(request,pk):
+    # create the room from the form.py meta model using the post method
     room = Room.objects.get(id=pk)
+    #
     form = RoomForm(instance=room)
     if request.method == "POST":
         form = RoomForm(request.POST,instance=room)
