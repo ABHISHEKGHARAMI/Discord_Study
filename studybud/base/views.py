@@ -6,6 +6,11 @@ from django.db.models import Q
 
 # Create your views here.
 
+# login page
+def loginPage(request):
+    context = {}
+    return render(request,'base/login_registration.html',context)
+
 
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
