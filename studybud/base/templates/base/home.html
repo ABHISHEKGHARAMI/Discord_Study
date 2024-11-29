@@ -4,7 +4,7 @@
 {% block content %}
   
    <h1>Home template</h1>
-
+    {# this is for the grid #}
     <div class="home-container">
 
       <div>
@@ -13,18 +13,21 @@
       </div>
 
 
-      <a href="{% url "base:create-room" %}">Create a room</a>
       <div>
-          <ul>
-          {% for data in room %}
-            <a href="{% url "base:update-room" data.id %}">Edit</a>
-            <a href="{% url "base:delete-room" data.id %}">Delete</a>
-            <span>@{{data.host.username}}</span>
-            <p><a href="{% url "base:room" data.id %}">{{data.name}}</a></p>
-            <small>{{data.topic.name}}</small>
-            <hr>
-          {% endfor %}
-        </ul>
+          <a href="{% url "base:create-room" %}">Create a room</a>
+          <div>
+            <ul>
+              {% for data in room %}
+                <a href="{% url "base:update-room" data.id %}">Edit</a>
+                <a href="{% url "base:delete-room" data.id %}">Delete</a>
+                <span>@{{data.host.username}}</span>
+                <p><a href="{% url "base:room" data.id %}">{{data.name}}</a></p>
+                <small>{{data.topic.name}}</small>
+                <hr>
+              {% endfor %}
+            </ul>
+          </div>
+
       </div>
     </div>
 
