@@ -13,6 +13,12 @@ from django.http import HttpResponse
 
 # login page
 def loginPage(request):
+    
+    # authenticated for the user
+    if request.user.is_authenticated:
+        return redirect('base:home')
+    
+    
     if request.method == "POST":
         # get the user cred from the user
         username = request.POST.get('username')
