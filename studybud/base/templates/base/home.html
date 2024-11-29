@@ -17,13 +17,18 @@
       <div>
         <h3>Browse Topics</h3>
         <hr>
+         {# for all filter#}
+          <div>
+              <a href="{% url 'base:home' %}">All</a>
+          </div>
+
         {# for looping the data#}
-        <ul>
-          {% for data in topic %}
-             <li> <a href="{% url "base:room" data.id %}">{{data.name}}</a></li>
-          
-          {% endfor %}
-        </ul>
+        {% for data in topic %}
+           <div>
+              <a href="{% url 'base:home' %}?q={{data.name}}">{{data.name}}</a>
+           </div>
+        
+        {% endfor %}
       </div>
 
 
