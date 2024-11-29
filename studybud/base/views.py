@@ -3,11 +3,21 @@ from django.http import HttpResponse
 from  .models import Room , Topic
 from .form import RoomForm
 from django.db.models import Q
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 # Create your views here.
 
 # login page
 def loginPage(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+        try:
+            user = User.objects.get(username=username)
+        except:
+            messages.error(request,'User does not exist.')
     context = {}
     return render(request,'base/login_registration.html',context)
 
