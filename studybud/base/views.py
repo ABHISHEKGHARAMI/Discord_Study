@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -85,8 +86,12 @@ def createRoom(request):
 def updateRoom(request,pk):
     # create the room from the form.py meta model using the post method
     room = Room.objects.get(id=pk)
-    #
+    #checking the instance from the model
     form = RoomForm(instance=room)
+    
+    if request.user != request.host:
+        # restricting the user from the op.
+        return HttpResponse("You are not allowed here!!")
     if request.method == "POST":
         form = RoomForm(request.POST,instance=room)
         form.save()
