@@ -89,7 +89,7 @@ def updateRoom(request,pk):
     #checking the instance from the model
     form = RoomForm(instance=room)
     
-    if request.user != request.host:
+    if request.user != room.host:
         # restricting the user from the op.
         return HttpResponse("You are not allowed here!!")
     if request.method == "POST":
