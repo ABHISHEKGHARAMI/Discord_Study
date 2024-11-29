@@ -16,8 +16,9 @@ def home(request):
         Q(host__username__icontains=q)
         )
     # build the context var
+    room_count = room.count()
     topic = Topic.objects.all()
-    context = {'room':room,'topic':topic}
+    context = {'room':room,'topic':topic,'room_count':room_count}
     return render(request,'base/home.html',context)
 
 def room(request,pk):
