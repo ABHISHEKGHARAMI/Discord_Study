@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -63,6 +64,7 @@ def room(request,pk):
 
 
 # views for creating new form
+@login_required(login_url='base:login')
 def createRoom(request):
     
     # create the room from the form.py meta model using the post method
@@ -79,6 +81,7 @@ def createRoom(request):
 
 
 # views for updating new form
+@login_required(login_url='base:login')
 def updateRoom(request,pk):
     # create the room from the form.py meta model using the post method
     room = Room.objects.get(id=pk)
@@ -93,6 +96,7 @@ def updateRoom(request,pk):
 
 
 # views for delete the form
+@login_required(login_url='base:login')
 def deleteRoom(request,pk):
     room = Room.objects.get(id=pk)
     if request.method == 'POST':
