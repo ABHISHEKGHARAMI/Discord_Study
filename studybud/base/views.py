@@ -7,7 +7,8 @@ from .form import RoomForm
 
 
 def home(request):
-    room = Room.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    room = Room.objects.filter(topic__name__icontains=q)
     # build the context var
     topic = Topic.objects.all()
     context = {'room':room,'topic':topic}
