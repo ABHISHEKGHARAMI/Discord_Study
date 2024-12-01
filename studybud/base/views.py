@@ -14,6 +14,8 @@ from django.http import HttpResponse
 # login page
 def loginPage(request):
     
+    
+    page = 'login'
     # authenticated for the user
     if request.user.is_authenticated:
         return redirect('base:home')
@@ -37,7 +39,7 @@ def loginPage(request):
             return redirect('base:home')
         else:
             messages.error(request,'Username or Password does not match!!')
-    context = {}
+    context = {'page':page}
     return render(request,'base/login_registration.html',context)
 
 
@@ -46,6 +48,11 @@ def logoutPage(request):
     logout(request)
     return redirect('base:home')
 
+
+# user registration for the new user
+def registerPage(request):
+    page = 'register'
+    return render(request,'base/login_registration.html')
 
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
