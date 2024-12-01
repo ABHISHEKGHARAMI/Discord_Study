@@ -14,6 +14,8 @@
     {% for rdata in message  %}
        <div>
           <small>@{{rdata.user}}     {{rdata.created| timesince}} ago</small>
+          <p>{{rdata}}</p>
+          <hr>
        </div>
     {% endfor %}
 </div>
