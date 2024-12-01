@@ -92,12 +92,12 @@ def room(request,pk):
     
     # user to create the message
     if request.method == "POST":
-        room_message = Message.object.create(
+        room_message = Message.objects.create(
             user = request.user,
             room = room,
             body = request.POST.get('body')
         )
-        return redirect('room',pk=room.id)
+        return redirect('base:room',pk=room.id)
     context = {'room':room,'message':message}
     return render(request,'base/room.html',context)
 
