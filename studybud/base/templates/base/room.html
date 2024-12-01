@@ -22,11 +22,11 @@
 
 {% if request.user.authenticated %}
   {# user to create comment #}
-<div class="comment-form">
-    <form method="POST" action="">
-        <input type="text" name="body" placeholder="write your message here ...">
-    </form>
-{% else %}
+    <div class="comment-form">
+        <form method="POST" action="">
+            <input type="text" name="body" placeholder="write your message here ...">
+        </form>
+    </div>
 {% endif %}
 
 {% endblock content %}
