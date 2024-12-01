@@ -63,6 +63,8 @@ def registerPage(request):
             # After creating the profile user should be logged in in the site
             login(request,user)
             return redirect('base:home')
+        else:
+            messages.error(request,'An error occurred...')
     return render(request,'base/login_registration.html',{
         'form':form
     })
