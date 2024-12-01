@@ -17,5 +17,16 @@
 
         <input type="submit" value="Login">
     </form>
+    <p>haven't signed up yet?</p>
+    <a href="{% url 'base:register' %}">Sign up</a>
+ </div>
+
+ <div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="submit" value="Register">
+    </form>
+    <p>Already signed up ?</p>
+    <a href="{% url 'base:login' %}">Login</a>
  </div>
 {% endblock content %}
