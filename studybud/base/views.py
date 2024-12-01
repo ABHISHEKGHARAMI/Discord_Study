@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
@@ -51,9 +52,10 @@ def logoutPage(request):
 
 # user registration for the new user
 def registerPage(request):
-    page = 'register'
-    context = {'page':page}
-    return render(request,'base/login_registration.html',context)
+    form = UserCreationForm()
+    return render(request,'base/login_registration.html',{
+        'form':form
+    })
 
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
