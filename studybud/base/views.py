@@ -24,7 +24,7 @@ def loginPage(request):
     
     if request.method == "POST":
         # get the user cred from the user
-        username = request.POST.get('username')
+        username = request.POST.get('username').lower()
         password = request.POST.get('password')
         # get this from the database
         try:
@@ -53,6 +53,16 @@ def logoutPage(request):
 # user registration for the new user
 def registerPage(request):
     form = UserCreationForm()
+    #validating the form
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            # After creating the profile user should be logged in in the site
+            login(request,user)
+            return redirect('base:home')
     return render(request,'base/login_registration.html',{
         'form':form
     })
