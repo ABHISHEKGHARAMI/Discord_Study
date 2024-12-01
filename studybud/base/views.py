@@ -52,7 +52,8 @@ def logoutPage(request):
 # user registration for the new user
 def registerPage(request):
     page = 'register'
-    return render(request,'base/login_registration.html')
+    context = {'page':page}
+    return render(request,'base/login_registration.html',context)
 
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
