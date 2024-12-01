@@ -4,6 +4,7 @@
 
 
 <form method="GET" action="{% url 'base:home'%}">
+    {% csrf_token %}
     <input type="text" name="q" placeholder="Search Rooms,Topic Name..."/>
 
 </form>
