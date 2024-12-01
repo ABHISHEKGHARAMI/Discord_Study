@@ -87,7 +87,8 @@ def home(request):
 def room(request,pk):
     # querying from the room table using the id
     room = Room.objects.get(id=pk)
-    context = {'room':room}
+    message = room.message_set.all().order_by('-created')
+    context = {'room':room,'message':message}
     return render(request,'base/room.html',context)
 
 
